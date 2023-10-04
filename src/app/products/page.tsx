@@ -16,12 +16,10 @@ export default function ProductPage() {
   const [counter, setCounter] = useState<number>(0)
 
   let cart: CartItems[] = []
-  let totalSum = 0
 
   /*
     useEffect for updating the DOM, number of wares in cart.
   */
-
 
   const addToCartHandler = (
     productId: number,
@@ -37,7 +35,8 @@ export default function ProductPage() {
             product doesn't exist in cart:
                 add product at end of array with numberOfProducts = 1
         */
-    setCounter((c) => c + 1)
+    setCounter((prev) => prev+1)
+
     let index = -1
     index = productsInCart.findIndex((object) => object.productId == productId)
 
@@ -55,11 +54,9 @@ export default function ProductPage() {
         { productId, productTitle, productPrice, numberOfProducts },
       ])
     }
-    // Update the total sum
-    totalSum = addToTotalSumCart(productsInCart)
-    console.log("Total sum: " + totalSum)
   }
 
+  /*
   const addToTotalSumCart = (cart: object[]) => {
     // Sum up the price in cart through iteration.
     let sum = 0
@@ -68,6 +65,7 @@ export default function ProductPage() {
     }
     return sum
   }
+*/
 
   const removeFromCartHandler = (id: number) => {
     /*
@@ -77,11 +75,10 @@ export default function ProductPage() {
                 If numberOfProducts is 0, remove product from list
             Update total sum
         */
-    setCounter((c) => c + 1)
     let index = -1
+    setCounter((prev) => prev+1)
     index = productsInCart.findIndex((object) => object.productId == id)
 
-    console.log(index)
     if (index != -1) {
       cart = productsInCart
       // If test to see if there's more than one product available
@@ -95,10 +92,6 @@ export default function ProductPage() {
       // Add products back in cart
       setProductsInCart(cart)
     }
-    console.log(productsInCart)
-    // Sum up the total sum
-    totalSum = addToTotalSumCart(productsInCart)
-    console.log("Total sum: " + totalSum)
   }
 
   return (
