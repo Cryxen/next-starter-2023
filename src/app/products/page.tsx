@@ -1,6 +1,6 @@
 "use client"
 
-import { SetStateAction, useState } from "react"
+import { SetStateAction, useEffect, useState } from "react"
 
 import Card from "@/components/Card"
 import Cart from "@/components/Cart"
@@ -13,9 +13,17 @@ export default function ProductPage() {
     Array.from(createProducts({ count: 10, faker }).values()),
   )
   const [productsInCart, setProductsInCart] = useState<CartItems[]>([])
+  const [counter, setCounter] = useState<number>(0)
 
   let cart: CartItems[] = []
   let totalSum = 0
+
+  /*
+    useEffect for updating the DOM, number of wares in cart.
+  */
+  useEffect(() => {
+    console.log("Inside useEffect")
+  }, [counter])
 
   const addToCartHandler = (
     productId: number,
@@ -31,6 +39,7 @@ export default function ProductPage() {
             product doesn't exist in cart:
                 add product at end of array with numberOfProducts = 1
         */
+    setCounter((c) => c + 1)
     let index = -1
     index = productsInCart.findIndex((object) => object.productId == productId)
 
@@ -70,7 +79,7 @@ export default function ProductPage() {
                 If numberOfProducts is 0, remove product from list
             Update total sum
         */
-    //cart = cart.filter((product) => product.id != id)
+    setCounter((c) => c + 1)
     let index = -1
     index = productsInCart.findIndex((object) => object.productId == id)
 
@@ -78,11 +87,11 @@ export default function ProductPage() {
     if (index != -1) {
       cart = productsInCart
       // If test to see if there's more than one product available
-      if (cart[index].numberOfProducts > 1) { 
+      if (cart[index].numberOfProducts > 1) {
         cart[index].numberOfProducts--
-      } 
+      }
       // Just one product left
-      else { 
+      else {
         cart.splice(index, 1)
       }
       // Add products back in cart
@@ -106,7 +115,11 @@ export default function ProductPage() {
           />
         ))}
       </ProductList>
-      <Cart productsInCart={productsInCart} />
+      <Cart
+        productsInCart={productsInCart}
+        addToCart={addToCartHandler}
+        removeFromCart={removeFromCartHandler}
+      />
     </div>
   )
 }

@@ -18,6 +18,8 @@ export type CartItems = {
     productTitle: string
     productPrice: number
     numberOfProducts?: number
+    addToCart?: (id: number, title:string, price:number ) => void
+    removeFromCart?: (id: number) => void
 }
 
 export type Faker = {
