@@ -13,6 +13,13 @@ export type Product = {
     removeFromCart?: (id: number) => void
 }
 
+export type CartItems = {
+    productId: number
+    productTitle: string
+    productPrice: number
+    numberOfProducts: number
+}
+
 export type Faker = {
     id: () => {}
     title: () => {}
