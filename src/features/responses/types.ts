@@ -17,7 +17,7 @@ export type CartItems = {
     productId: number
     productTitle: string
     productPrice: number
-    numberOfProducts: number
+    numberOfProducts?: number
 }
 
 export type Faker = {
