@@ -9,7 +9,8 @@ export type Product = {
     description: string
     price: number
     category: string
-    addToCart?: (id: number) => void
+    addToCart?: (id: number, title:string, price:number ) => void
+    removeFromCart?: (id: number) => void
 }
 
 export type Faker = {
