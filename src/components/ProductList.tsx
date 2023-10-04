@@ -1,7 +1,7 @@
 import { ReactNode } from "react"
-import ProductItem from "./ProductItem"
+import Card from "./Card"
 
-const Products = ({children} : {children: ReactNode}) => {
+const ProductList = ({children} : {children: ReactNode}) => {
 
     return(
         <div className="flex flex-row flex-wrap">
@@ -9,4 +9,4 @@ const Products = ({children} : {children: ReactNode}) => {
         </div>
     )
 }
-export default Products
+export default ProductList

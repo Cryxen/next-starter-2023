@@ -1,4 +1,4 @@
-const ShoppingCart = () => {
+const Cart = () => {
     return(
         <>
         <p>Handlevogn:</p>
@@ -6,4 +6,4 @@ const ShoppingCart = () => {
     )
 
 }
-export default ShoppingCart
+export default Cart

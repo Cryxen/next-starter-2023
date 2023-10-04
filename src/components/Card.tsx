@@ -1,6 +1,6 @@
 import { Product } from "@/features/responses/types"
 
-const ProductItem = (props: Product) => {
+const Card = (props: Product) => {
     const {id, title, description, price, category, addToCart: addToCart, removeFromCart: removeFromCart} = props
 
     const handleAddToCart = () => {
@@ -23,4 +23,4 @@ const ProductItem = (props: Product) => {
     )
 }
 
-export default ProductItem
+export default Card

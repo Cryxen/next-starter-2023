@@ -1,9 +1,9 @@
 "use client"
 
 
-import ProductItem from "@/components/ProductItem";
-import Products from "@/components/Products";
-import ShoppingCart from "@/components/shoppingCart";
+import Card from "@/components/Card";
+import ProductList from "@/components/ProductList";
+import Cart from "@/components/Cart";
 import { createProducts, faker } from "@/features/responses/CreateProduct";
 import { useState } from "react";
 
@@ -44,11 +44,11 @@ export default function ProductPage() {
 
     return (
         <div className="flex flex-row">
-            <Products>
+            <ProductList>
                 {products.map((product) => (
-                    <ProductItem key={product.id}{...product} addToCart={addToCartHandler} removeFromCart={removeFromCartHandler} />
+                    <Card key={product.id}{...product} addToCart={addToCartHandler} removeFromCart={removeFromCartHandler} />
                 ))}
-            </Products>
-            <ShoppingCart />
+            </ProductList>
+            <Cart />
         </div>)
 }
