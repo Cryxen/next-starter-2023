@@ -1,19 +1,19 @@
 import { Product } from "@/features/responses/types"
 
 const ProductItem = (props: Product) => {
-    const {id, title, description, price, category, onDelete} = props
+    const {id, title, description, price, category, addToCart: addToCart} = props
 
-    const handleDelete = () => {
-        onDelete?.(id)
+    const handleAddToCart = () => {
+        addToCart?.(id)
     }
 
     return(
-        <article className="border border-solid m-5 ">
-        <h3 className="text-lg my-2">{title}</h3>
-        <p>{category}</p>
-        <p>{description}</p>
-        <p>{price}</p>
-        {onDelete ? <button onClick={handleDelete} className="border border-solid">Slett vare</button> : null}
+        <article className="border-2 border-solid m-5 p-5">
+        <h3 className="text-lg my-2 font-bold underline">{title}</h3>
+        <p>Beskrivelse: {description}</p>
+        <p>Kategori: {category}</p>
+        <p>Pris: {price} Kroner</p>
+        {addToCart ? <button onClick={handleAddToCart} className="border border-solid">Legg vare i handlevogn</button> : null}
         </article>
     )
 }

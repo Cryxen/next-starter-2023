@@ -9,7 +9,7 @@ export type Product = {
     description: string
     price: number
     category: string
-    onDelete?: (id: number) => void
+    addToCart?: (id: number) => void
 }
 
 export type Faker = {
