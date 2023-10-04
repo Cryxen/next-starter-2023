@@ -26,6 +26,16 @@ const Cart = ({ productsInCart, addToCart, removeFromCart, counter }) => {
     removeFromCart?.(cartItem.productId)
   }
 
+  // Handle purchase
+  const handlePurchase = () => {
+    console.log("Handle purchase")
+    console.log("Produkter i handlevogn: ")
+    for (const product of productsInCart) {
+      console.log(product.productTitle + " ---- " + product.numberOfProducts + " ---- " + product.productPrice * product.numberOfProducts)
+    }
+    console.log("Total sum: " + totalSum)
+  }
+
   return (
     <div>
       <p>Handlevogn:</p>
@@ -45,6 +55,7 @@ const Cart = ({ productsInCart, addToCart, removeFromCart, counter }) => {
         ))}
       </table>
       <p>Sum: {totalSum}</p>
+      <button onClick={handlePurchase} className="border border-solid">Kjøp</button>
     </div>
   )
 }
