@@ -6,9 +6,9 @@ export type Category = {
 export type Product = {
     id: number
     title: string
-    description: string
+    description?: string
     price: number
-    category: string
+    category?: string
     addToCart?: (id: number, title:string, price:number ) => void
     removeFromCart?: (id: number) => void
 }
