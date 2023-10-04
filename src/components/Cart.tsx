@@ -3,10 +3,13 @@
 import { CartItems } from "@/features/responses/types"
 import { useEffect } from "react"
 
-const Cart = ({ productsInCart, addToCart, removeFromCart }) => {
+const Cart = ({ productsInCart, addToCart, removeFromCart, counter }) => {
   console.log("Inside shopping cart")
   console.log(productsInCart)
 
+  useEffect(() => {
+    console.log("Inside useEffect")
+  }, [counter])
 
   const handleAddToCart = (cartItem : CartItems) => {
     addToCart?.(cartItem.productId, cartItem.productTitle, cartItem.productPrice)

@@ -21,9 +21,7 @@ export default function ProductPage() {
   /*
     useEffect for updating the DOM, number of wares in cart.
   */
-  useEffect(() => {
-    console.log("Inside useEffect")
-  }, [counter])
+
 
   const addToCartHandler = (
     productId: number,
@@ -119,6 +117,7 @@ export default function ProductPage() {
         productsInCart={productsInCart}
         addToCart={addToCartHandler}
         removeFromCart={removeFromCartHandler}
+        counter={counter}
       />
     </div>
   )
