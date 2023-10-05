@@ -35,16 +35,24 @@ const Cart = ({ productsInCart, addToCart, removeFromCart, totalSum }) => {
 
   return (
     <div>
-      <p>Handlevogn:</p>
-      <table>
+      <p className="underline text-lg font-bold text-center py-4">Handlevogn:</p>
+      <table className="table-auto mr-5">
+        <thead>
+          <th></th>
+          <th></th>
+          <th>Vare:</th>
+          <th>Antall:</th>
+          <th>Sum:</th>
+        </thead>
         <tbody>
         {productsInCart.map((element) => (
-          <tr key={element.productId}>
+          <tr key={element.productId} className="text-md m-2">
             <td>
               <button
                 onClick={() => {
                   handleAddToCart(element)
                 }}
+                className="border border-solid py-1 px-3 bg-gray-100 m-1"
               >
                 +
               </button>
@@ -54,19 +62,21 @@ const Cart = ({ productsInCart, addToCart, removeFromCart, totalSum }) => {
                 onClick={() => {
                   handleRemoveFromCart(element)
                 }}
+                className="border border-solid py-1 px-3 bg-gray-100 m-1"
+
               >
                 -
               </button>{" "}
             </td>
-            <td>{element.productTitle}</td>
-            <td>{element.numberOfProducts}</td>
-            <td>({element.numberOfProducts * element.productPrice})</td>
+            <td className="mx-2">{element.productTitle}</td>
+            <td className="mx-1">{element.numberOfProducts}</td>
+            <td className="mx-1">({element.numberOfProducts * element.productPrice})</td>
           </tr>
         ))}
         </tbody>
       </table>
-      <p>Sum: {totalSum}</p>
-      <button onClick={handlePurchase} className="border border-solid">
+      <p className="mt-5 mr-5 font-bold text-right">Sum: {totalSum}</p>
+      <button onClick={handlePurchase} className="border border-solid p-2 text-md absolute right-5">
         Kjøp
       </button>
     </div>
