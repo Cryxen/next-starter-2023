@@ -98,6 +98,10 @@ module.exports = {
           "50%": { background: "transparent" },
           "100%": { background: "hsl(var(--warning-light))", color: "#878c8e" },
         },
+        "fade-in": {
+          "0%": { display: "none" },
+          "100%": { display: "contents" },
+        },
       },
     },
     animation: {
