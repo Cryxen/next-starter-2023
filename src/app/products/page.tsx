@@ -9,17 +9,23 @@ import { createProducts, faker } from "@/features/responses/CreateProduct"
 import { CartItems, Product } from "@/features/responses/types"
 
 export default function ProductPage() {
-  const [products, setProducts] = useState(
-    Array.from(createProducts({ count: 10, faker }).values()),
-  )
+  const [products, setProducts] = useState<Product[]>()
   const [productsInCart, setProductsInCart] = useState<CartItems[]>([])
   const [counter, setCounter] = useState<number>(0)
 
   let cart: CartItems[] = []
 
-  /*
-    useEffect for updating the DOM, number of wares in cart.
-  */
+  useEffect (() => {
+    const getProducts = async () => {
+      const response = await fetch("/api/products", {
+        method: "get",
+      })
+      const result = (await response.json()) as {data: Product[]}
+      console.log(result)
+      setProducts(result.data)
+    }
+    getProducts()
+  }, [])
 
   const addToCartHandler = (
     productId: number,
@@ -97,7 +103,7 @@ export default function ProductPage() {
   return (
     <div className="flex flex-row">
       <ProductList>
-        {products.map((product) => (
+        {products?.map((product) => (
           <Card
             key={product.id}
             {...product}
