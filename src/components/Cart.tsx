@@ -1,8 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
+import { useState } from "react"
+
 import { CartItems } from "@/features/responses/types"
 
 const Cart = ({ productsInCart, addToCart, removeFromCart, totalSum }) => {
+  const [showCart, setShowCart] = useState<boolean>(false)
+
   //Handle items add to cart. TODO: Refactor this, as this is copy paste code
   const handleAddToCart = (cartItem: CartItems) => {
     addToCart?.(
@@ -33,52 +37,69 @@ const Cart = ({ productsInCart, addToCart, removeFromCart, totalSum }) => {
     console.log("Total sum: " + totalSum)
   }
 
+  const handleShowCart = () => {
+    setShowCart(!showCart)
+  }
+
   return (
     <div>
-      <p className="underline text-lg font-bold text-center py-4">Handlevogn:</p>
-      <table className="table-auto mr-5">
-        <thead>
-          <th></th>
-          <th></th>
-          <th>Vare:</th>
-          <th>Antall:</th>
-          <th>Sum:</th>
-        </thead>
-        <tbody>
-        {productsInCart.map((element) => (
-          <tr key={element.productId} className="text-md m-2">
-            <td>
-              <button
-                onClick={() => {
-                  handleAddToCart(element)
-                }}
-                className="border border-solid py-1 px-3 bg-gray-100 m-1"
-              >
-                +
-              </button>
-            </td>
-            <td>
-              <button
-                onClick={() => {
-                  handleRemoveFromCart(element)
-                }}
-                className="border border-solid py-1 px-3 bg-gray-100 m-1"
-
-              >
-                -
-              </button>{" "}
-            </td>
-            <td className="mx-2">{element.productTitle}</td>
-            <td className="mx-1">{element.numberOfProducts}</td>
-            <td className="mx-1">({element.numberOfProducts * element.productPrice})</td>
-          </tr>
-        ))}
-        </tbody>
-      </table>
-      <p className="mt-5 mr-5 font-bold text-right">Sum: {totalSum}</p>
-      <button onClick={handlePurchase} className="border border-solid p-2 text-md absolute right-5">
-        Kjøp
+      <button
+        onClick={handleShowCart}
+        className="py-4 text-center text-lg font-bold underline"
+      >
+        Handlevogn:
       </button>
+      <div className={showCart ? "content" : "hidden"}>
+          <table className="mr-5 table-auto">
+            <thead>
+              <tr>
+              <th></th>
+              <th></th>
+              <th>Vare:</th>
+              <th>Antall:</th>
+              <th>Sum:</th>
+              </tr>
+            </thead>
+            <tbody>
+              {productsInCart.map((element) => (
+                <tr key={element.productId} className="text-md m-2">
+                  <td>
+                    <button
+                      onClick={() => {
+                        handleAddToCart(element)
+                      }}
+                      className="m-1 border border-solid bg-gray-100 px-3 py-1"
+                    >
+                      +
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      onClick={() => {
+                        handleRemoveFromCart(element)
+                      }}
+                      className="m-1 border border-solid bg-gray-100 px-3 py-1"
+                    >
+                      -
+                    </button>{" "}
+                  </td>
+                  <td className="mx-2">{element.productTitle}</td>
+                  <td className="mx-1">{element.numberOfProducts}</td>
+                  <td className="mx-1">
+                    ({element.numberOfProducts * element.productPrice})
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="mr-5 mt-5 text-right font-bold">Sum: {totalSum}</p>
+          <button
+            onClick={handlePurchase}
+            className="text-md absolute right-5 border border-solid p-2"
+          >
+            Kjøp
+          </button>
+          </div>
     </div>
   )
 }

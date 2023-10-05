@@ -11,23 +11,21 @@ import useCart from "@/hooks/useCart"
 
 export default function ProductPage() {
   const [products, setProducts] = useState<Product[]>()
- 
 
-    const {cart, sum, addToCart, removeFromCart} = useCart()
+  //Custom hook
+  const { cart, sum, addToCart, removeFromCart } = useCart()
 
-
-
-  useEffect (() => {
+  // Get products fomr api
+  useEffect(() => {
     const getProducts = async () => {
       const response = await fetch("/api/products", {
         method: "get",
       })
-      const result = (await response.json()) as {data: Product[]}
+      const result = (await response.json()) as { data: Product[] }
       setProducts(result.data)
     }
     getProducts()
   }, [])
-
 
   return (
     <div className="flex flex-row">
@@ -45,8 +43,7 @@ export default function ProductPage() {
         productsInCart={cart}
         addToCart={addToCart}
         removeFromCart={removeFromCart}
-        totalSum = {sum}
-
+        totalSum={sum}
       />
     </div>
   )
