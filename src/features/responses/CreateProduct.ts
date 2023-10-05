@@ -37,8 +37,12 @@ export const faker: Faker = {
     category: () => getRandomItem(fakeCategory)
 }
 
-const createProducts: CreateProducts = ({existingProducts, count}) => {
+const createProducts: CreateProducts = ({existingProducts, count, faker}) => {
     const products = new Map(existingProducts)
+
+    if (products.size === 0 && count === 0){
+        throw new Error("No product added")
+    }
 
     for (let i = 0; i < count; i++) {
         const product = {
@@ -53,4 +57,4 @@ const createProducts: CreateProducts = ({existingProducts, count}) => {
     return products
 }
 
-export {createProducts}
+export { createProducts, getRandomId };

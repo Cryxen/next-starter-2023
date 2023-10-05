@@ -17,8 +17,6 @@ const Card = (props: Product) => {
         <p>Kategori: {category}</p>
         <p>Pris: {price} Kroner</p>
         {addToCart ? <button onClick={handleAddToCart} className="border border-solid">Legg vare i handlevogn</button> : null}
-        {removeFromCart ? <button onClick={handleRemoveFromCart} className="border border-solid">Fjern vare fra handlevogn</button> : null}
-
         </article>
     )
 }
